@@ -1,0 +1,8 @@
+django===3.0.3
+djangorestframework==3.11
+django-environ
+django-oauth-toolkit==1.3.0
+django-rest-framework-social-oauth2
+social-django
+social-auth-app-django
+django-social-auth
