@@ -1,2 +1,4 @@
-from .django import *
-from .third_party import *
+try:
+    from .local import *
+except ImportError as e:
+    from .defaults import *

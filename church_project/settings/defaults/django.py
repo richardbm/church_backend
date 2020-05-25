@@ -28,7 +28,7 @@ SECRET_KEY = 'c0)z)db_6k!c)8@l5r2f7(2k(_zlso8=+mwtwxpfoqzw5og$$z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", cast=str)
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework_social_oauth2',
     'rest_framework',
     'apps.accounts',
+    'celery',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -85,9 +87,13 @@ WSGI_APPLICATION = 'church_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'church',
+        'USER': 'root',
+        'PASSWORD': 'development',
+        'HOST': 'postgres',
+        'PORT': '5432',
+    },
 }
 
 
@@ -134,3 +140,6 @@ AUTHENTICATION_BACKENDS = (
    'rest_framework_social_oauth2.backends.DjangoOAuth2',
    'django.contrib.auth.backends.ModelBackend',
 )
+
+
+AUTH_USER_MODEL = 'accounts.User'
