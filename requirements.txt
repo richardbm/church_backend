@@ -6,3 +6,6 @@ django-rest-framework-social-oauth2==1.1
 celery==4.4.2
 psycopg2==2.8.5
 django-celery-beat==2.0
+gunicorn==20.0.4
+whitenoise==5.1
+dj-database-url==0.5
