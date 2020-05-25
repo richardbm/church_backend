@@ -1,8 +1,9 @@
 build:
   docker:
-    app: Dockerfile
+    web: Dockerfile
+    image: app-image
 run:
-  app: gunicorn church_project.wsgi:application --bind 0.0.0.0:$PORT
+  web: gunicorn church_project.wsgi:application --bind 0.0.0.0:$PORT
   image: app-image
 release:
   image: app-image
