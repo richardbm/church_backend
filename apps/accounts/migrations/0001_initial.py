@@ -29,8 +29,8 @@ class Migration(migrations.Migration):
                 ('username', models.CharField(error_messages={'unique': 'A user with that username already exists.'}, max_length=150, unique=True)),
                 ('email', models.EmailField(blank=True, max_length=254, null=True)),
                 ('phone_number', models.CharField(blank=True, max_length=32, null=True)),
-                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.Group', verbose_name='groups')),
-                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.Permission', verbose_name='user permissions')),
+                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='apps.auth.Group', verbose_name='groups')),
+                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='apps.auth.Permission', verbose_name='user permissions')),
             ],
             options={
                 'verbose_name': 'user',
