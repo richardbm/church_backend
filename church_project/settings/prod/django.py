@@ -1,13 +1,10 @@
 import os
-import dj_database_url
-import django_heroku
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -17,12 +14,16 @@ MIDDLEWARE = [
 ]
 
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
 DATABASES = {
-    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'church',
+        'USER': 'root',
+        'PASSWORD': 'development',
+        'HOST': 'postgres',
+        'PORT': '5432',
+    },
 }
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-django_heroku.settings(locals())
