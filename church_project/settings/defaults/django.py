@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -143,3 +145,4 @@ AUTHENTICATION_BACKENDS = (
 
 
 AUTH_USER_MODEL = 'accounts.User'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
