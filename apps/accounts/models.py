@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy
 from django.contrib.auth.models import AbstractUser
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class User(AbstractUser):
@@ -12,5 +13,4 @@ class User(AbstractUser):
         },
     )
     email = models.EmailField(blank=True, null=True)
-    phone_number = models.CharField(max_length=32, blank=True, null=True)
-
+    phone_number = PhoneNumberField(blank=True, null=True)
