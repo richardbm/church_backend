@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'apps.api',
     'apps.church',
     'apps.utils',
+    'apps.ministries',
     'celery',
     'django_celery_beat'
 ]
