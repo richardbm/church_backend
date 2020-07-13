@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'phonenumber_field',
     'apps.accounts',
+    'apps.api',
+    'apps.ministies',
     'celery',
     'django_celery_beat'
 ]
