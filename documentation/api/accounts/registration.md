@@ -24,7 +24,7 @@
 
 #### Response:
 
-*status code:* `200`
+*status code:* `201`
 
 *body:*
 
