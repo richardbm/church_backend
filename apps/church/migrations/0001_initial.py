@@ -50,6 +50,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('label', models.CharField(choices=[('ADDRESS', 'Address'), ('PHONE_NUMBER', 'Phone_number'), ('EMAIL', 'Email'), ('MAP', 'Map')], max_length=32)),
+                ('value', models.CharField(max_length=128)),
                 ('contact', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='contact_parameters', to='church.Contact')),
             ],
             options={

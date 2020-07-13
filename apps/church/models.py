@@ -31,14 +31,18 @@ class Contact(CustomModel):
 class ContactParameter(CustomModel):
     LABEL_CHOICE = (
         (CONTACT_PARAMETER_ADDRESS, "Address"),
-        (CONTACT_PARAMETER_PHONE_NUMBER, "Phone_number"),
+        (CONTACT_PARAMETER_PHONE_NUMBER, "Phone number"),
         (CONTACT_PARAMETER_EMAIL, "Email"),
         (CONTACT_PARAMETER_MAP, "Map"),
     )
     label = models.CharField(choices=LABEL_CHOICE, max_length=32)
+    value = models.CharField(max_length=128)
     contact = models.ForeignKey(
         "Contact", related_name="contact_parameters", on_delete=models.CASCADE
     )
+
+    class Meta:
+        ordering = ("label",)
 
     def __str__(self):
         return self.label
