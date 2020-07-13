@@ -1,5 +1,6 @@
 from model_bakery.recipe import Recipe
 
+# ############### About ###############
 
 about_mission = Recipe(
     "church.About",
@@ -20,4 +21,20 @@ about_history = Recipe(
     label="History",
     description="This is the history of the church...",
     order=1,
+)
+
+
+# ############### Contact ###############
+
+
+contact_john_doe = Recipe(
+    "church.Contact", name="John Doe", description="Main Pastor", order=1
+)
+
+contact_jane_doe = Recipe(
+    "church.Contact", name="Jane Doe", description="Elder", order=2
+)
+
+contact_workship = Recipe(
+    "church.Contact", name="Workship ministry", description="", order=3
 )
