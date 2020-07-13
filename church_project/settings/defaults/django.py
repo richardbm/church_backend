@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'apps.accounts',
     'apps.api',
-    'apps.ministies',
+    'apps.church',
+    'apps.utils',
     'celery',
     'django_celery_beat'
 ]
