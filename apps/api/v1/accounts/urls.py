@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from apps.accounts.api.v1.views import UserRegistrationViewSet
+from apps.api.v1.accounts.views import UserRegistrationViewSet
 
 app_name = "api"
 

@@ -19,7 +19,7 @@ class UserRegistrationAPITestCase(APITestCase):
 
     def test_register_user_success(self):
         response = self.client.post(self.url, data=self.user_data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED, response.data)
         self.assertTrue(User.objects.filter(username="john@doe.com").exists())
 
     def test_register_username_already_exists(self):
@@ -50,12 +50,12 @@ class UserRegistrationAPITestCase(APITestCase):
         data = self.user_data
         data["phone_number"] = "933333333"
         response = self.client.post(self.url, data=self.user_data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response.data)
         self.assertFalse(User.objects.filter(phone_number=data["phone_number"]).exists())
 
     def test_register_phone_number_invalid_long(self):
         data = self.user_data
         data["phone_number"] = "+5693333333"
         response = self.client.post(self.url, data=self.user_data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response.data)
         self.assertFalse(User.objects.filter(phone_number=data["phone_number"]).exists())
