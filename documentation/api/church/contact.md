@@ -59,12 +59,6 @@
 
 ```
 {
-    "id": 1,
-    "name": "John Doe",
-    "description": "Main Pastor",
-    "contact_parameters": []
-},
-{
     "id": 2,
     "name": "John Doe",
     "description": "Main Pastor",
