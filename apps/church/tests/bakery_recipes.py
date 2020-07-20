@@ -38,3 +38,8 @@ contact_jane_doe = Recipe(
 contact_workship = Recipe(
     "church.Contact", name="Workship ministry", description="", order=3
 )
+
+
+contact_biblical_school = Recipe(
+    "church.Contact", name="Biblical school", description="", order=3
+)
