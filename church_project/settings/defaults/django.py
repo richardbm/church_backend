@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import environ
 import os
+
+import environ
 
 env = environ.Env()
 environ.Env.read_env()  # reading .env file
@@ -51,10 +52,11 @@ INSTALLED_APPS = [
     'apps.api',
     'apps.church',
     'apps.utils',
-    'apps.activities',
     'apps.ministries',
     'celery',
-    'django_celery_beat'
+    'django_celery_beat',
+    'recurrence',
+    'schedule',
 ]
 
 MIDDLEWARE = [
