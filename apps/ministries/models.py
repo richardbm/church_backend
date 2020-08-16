@@ -9,6 +9,9 @@ class Ministry(CustomModel):
     contact_information = models.OneToOneField(
         "church.Contact", blank=True, null=True, on_delete=models.SET_NULL
     )
+    events = models.ManyToManyField(
+        "schedule.Event", related_name="ministries", blank=True
+    )
 
     def __str__(self):
         return self.name
