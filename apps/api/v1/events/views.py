@@ -3,22 +3,29 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
-from apps.ministries.services import get_ministry, get_ministries_list
-from .serializers import MinistrySerializer
+from apps.events.services import get_event_occurrences
+from .serializers import OccurrenceSerializer
 
 
-class MinistriesViewSet(ViewSet):
-    serializer_class = MinistrySerializer
+class OccurrenceViewSet(ViewSet):
+    serializer_class = OccurrenceSerializer
     permission_classes = (AllowAny,)
 
-    def retrieve(self, request, pk=None):
-        ministry = get_ministry(ministry_id=pk)
-        if not ministry:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = self.serializer_class(instance=ministry)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
     def list(self, request):
-        queryset = get_ministries_list()
-        serializer = self.serializer_class(instance=queryset, many=True)
+        start_date = request.query_params.get("start_date")
+        end_date = request.query_params.get("end_date")
+        ministry_id = request.query_params.get("ministry_id")
+        if not start_date:
+            return Response(
+                status=status.HTTP_400_BAD_REQUEST,
+                data={"error_message": "start_date date is required"},
+            )
+        if not end_date:
+            return Response(
+                status=status.HTTP_400_BAD_REQUEST,
+                data={"error_message": "end_date date is required"},
+            )
+
+        occurrences = get_event_occurrences(start_date, end_date, ministry_id)
+        serializer = self.serializer_class(instance=occurrences, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
