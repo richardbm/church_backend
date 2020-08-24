@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'apps.church',
     'apps.utils',
     'apps.ministries',
+    'apps.events',
     'celery',
     'django_celery_beat',
     'recurrence',
