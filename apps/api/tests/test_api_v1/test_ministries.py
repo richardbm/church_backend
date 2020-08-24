@@ -1,20 +1,7 @@
 from django.urls import reverse
-from model_bakery import baker
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from apps.church.constants import (
-    CONTACT_PARAMETER_PHONE_NUMBER,
-    CONTACT_PARAMETER_EMAIL,
-)
-from apps.church.tests.bakery_recipes import (
-    about_mission,
-    about_vision,
-    about_history,
-    contact_workship,
-    contact_jane_doe,
-    contact_john_doe,
-)
 from apps.ministries.tests.bakery_recipes import ministry_biblical_school
 
 
