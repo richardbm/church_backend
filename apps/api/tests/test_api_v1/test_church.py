@@ -26,11 +26,12 @@ class AboutAPITestCase(APITestCase):
         vision = about_vision.make(order=2)
         mission = about_mission.make(order=1)
         response = self.client.get(self.url_list)
-        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
-        self.assertEqual(len(response.data), 3)
-        self.assertEqual(response.data[0]["label"], mission.label, response.data)
-        self.assertEqual(response.data[1]["label"], vision.label, response.data)
-        self.assertEqual(response.data[2]["label"], history.label, response.data)
+        response_data = response.data["results"]
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response_data)
+        self.assertEqual(len(response_data), 3)
+        self.assertEqual(response_data[0]["label"], mission.label, response_data)
+        self.assertEqual(response_data[1]["label"], vision.label, response_data)
+        self.assertEqual(response_data[2]["label"], history.label, response_data)
 
     def test_get_about_detail(self):
         about_vision.make()
@@ -51,11 +52,12 @@ class ContactAPITestCase(APITestCase):
         jane_doe = contact_jane_doe.make(order=2)
         john_doe = contact_john_doe.make(order=1)
         response = self.client.get(self.url_list)
-        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
-        self.assertEqual(len(response.data), 3)
-        self.assertEqual(response.data[0]["name"], john_doe.name, response.data)
-        self.assertEqual(response.data[1]["name"], jane_doe.name, response.data)
-        self.assertEqual(response.data[2]["name"], workship.name, response.data)
+        response_data = response.data["results"]
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response_data)
+        self.assertEqual(len(response_data), 3)
+        self.assertEqual(response_data[0]["name"], john_doe.name, response_data)
+        self.assertEqual(response_data[1]["name"], jane_doe.name, response_data)
+        self.assertEqual(response_data[2]["name"], workship.name, response_data)
 
     def test_get_about_detail(self):
         john_doe = contact_john_doe.make(order=1)
