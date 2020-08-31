@@ -11,7 +11,7 @@ js_info_dict = {
 
 urlpatterns = [
     path("", include("apps.api.urls", namespace="api")),
-    path(r'^jsi18n/$', JavaScriptCatalog.as_view(), js_info_dict),
+    path('jsi18n/', JavaScriptCatalog.as_view(), js_info_dict),
     path("auth/", include('rest_framework_social_oauth2.urls')),
     path('jet/', include('jet.urls', namespace='jet')),  # Django JET URLS
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
