@@ -13,10 +13,11 @@ class PostAPITestCase(APITestCase):
         post = post_published.make()
         response = self.client.get(self.url_list)
         self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]["title"], post.title, response.data)
+        response_data = response.data["results"]
+        self.assertEqual(len(response_data), 1, response.data)
+        self.assertEqual(response_data[0]["title"], post.title, response.data)
         self.assertEqual(
-            response.data[0]["description"], post.short_description, response.data
+            response_data[0]["description"], post.short_description, response.data
         )
 
     def test_get_post_detail(self):
