@@ -12,16 +12,17 @@ class MinistryAPITestCase(APITestCase):
     def test_get_ministries_list(self):
         ministry = ministry_biblical_school.make()
         response = self.client.get(self.url_list)
-        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]["name"], ministry.name, response.data)
+        response_data = response.data["results"]
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response_data)
+        self.assertEqual(len(response_data), 1)
+        self.assertEqual(response_data[0]["name"], ministry.name, response_data)
         self.assertEqual(
-            response.data[0]["description"], ministry.description, response.data
+            response_data[0]["description"], ministry.description, response_data
         )
         self.assertEqual(
-            response.data[0]["contact_information"]["name"],
+            response_data[0]["contact_information"]["name"],
             ministry.contact_information.name,
-            response.data,
+            response_data,
         )
 
     def test_get_ministry_detail(self):
