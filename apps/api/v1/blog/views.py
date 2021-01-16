@@ -10,3 +10,4 @@ class PostViewSet(ServiceViewSet):
     list_service = staticmethod(get_posts_list)
     serializer_class = PostListSerializer
     detail_serializer_class = PostDetailSerializer
+    search_fields = ['title']
