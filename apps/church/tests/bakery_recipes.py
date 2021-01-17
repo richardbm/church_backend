@@ -43,3 +43,20 @@ contact_workship = Recipe(
 contact_biblical_school = Recipe(
     "church.Contact", name="Biblical school", description="", order=3
 )
+
+
+# ############### News ###############
+
+
+news_changing_schedule = Recipe(
+    "church.News",
+    subject="Changes in biblical shcool schedule since April 22",
+    content="Next week the schedule will be on Sunday at 11am",
+)
+
+
+news_special_activity = Recipe(
+    "church.News",
+    subject="We are preparing a new special activity for next month",
+    content="We are preparing a new special activity for next month",
+)

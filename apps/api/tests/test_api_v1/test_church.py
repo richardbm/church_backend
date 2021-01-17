@@ -1,4 +1,5 @@
 from django.urls import reverse
+from freezegun import freeze_time
 from model_bakery import baker
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -13,7 +14,7 @@ from apps.church.tests.bakery_recipes import (
     about_history,
     contact_workship,
     contact_jane_doe,
-    contact_john_doe,
+    contact_john_doe, news_changing_schedule, news_special_activity,
 )
 
 
@@ -82,3 +83,33 @@ class ContactAPITestCase(APITestCase):
         self.assertEqual(response.data["name"], john_doe.name)
         self.assertEqual(response.data["description"], john_doe.description)
         self.assertEqual(len(response.data["contact_parameters"]), 2)
+
+
+class NewsAPITestCase(APITestCase):
+    def setUp(self) -> None:
+        self.url_list = reverse("api:v1:church:news-list")
+        self.changing_schedule = news_changing_schedule.make()
+        self.special_activity = news_special_activity.make(expires_at="2021-01-05T10:00:00+00:00")
+
+    @freeze_time("2021-01-01")
+    def test_get_news_list(self):
+        response = self.client.get(self.url_list)
+        response_data = response.data["results"]
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response_data)
+        self.assertEqual(len(response_data), 2)
+        self.assertIn("subject", response_data[0], response_data)
+        self.assertIn("content", response_data[0], response_data)
+
+    @freeze_time("2021-01-07")
+    def test_get_news_list_after_expiring_date(self):
+        response = self.client.get(self.url_list)
+        response_data = response.data["results"]
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response_data)
+        self.assertEqual(len(response_data), 1, response_data)
+
+    def test_get_news_detail(self):
+        url = reverse("api:v1:church:news-detail", kwargs={"pk": self.changing_schedule.pk})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
+        self.assertEqual(response.data["subject"], self.changing_schedule.subject, response.data)
+        self.assertEqual(response.data["content"], self.changing_schedule.content, response.data)
