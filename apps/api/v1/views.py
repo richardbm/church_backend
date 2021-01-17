@@ -6,7 +6,7 @@ from rest_framework.viewsets import GenericViewSet
 from apps.api.v1.paginators import CustomCursorPagination
 
 
-class ServiceViewSet(
+class CustomViewSet(
     mixins.CreateModelMixin,
     mixins.RetrieveModelMixin,
     mixins.UpdateModelMixin,

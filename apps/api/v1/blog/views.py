@@ -1,9 +1,9 @@
 from apps.blog.services import get_post, get_posts_list
 from .serializers import PostListSerializer, PostDetailSerializer
-from ..views import ServiceViewSet
+from ..views import CustomViewSet
 
 
-class PostViewSet(ServiceViewSet):
+class PostViewSet(CustomViewSet):
     lookup_field = "slug"
     lookup_url_kwarg = "slug"
     detail_service = staticmethod(get_post)
