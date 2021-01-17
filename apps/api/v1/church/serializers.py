@@ -11,3 +11,9 @@ class AboutSerializer(serializers.Serializer):
 
 class ContactSerializer(BaseContactSerializer):
     pass
+
+
+class NewsSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    subject = serializers.CharField()
+    content = serializers.CharField()

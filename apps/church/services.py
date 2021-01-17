@@ -1,4 +1,7 @@
-from django.db.models import QuerySet
+from typing import Optional
+
+import arrow
+from django.db.models import QuerySet, Q
 
 from apps.church.models import About, Contact, News
 
@@ -20,7 +23,10 @@ def get_contact(contact_id: int = None) -> Contact:
 
 
 def get_news_list() -> QuerySet:
-    return News.objects.filter(is_active=True).order_by("order")
+    return News.objects.filter(
+        Q(is_active=True)
+        & (Q(expires_at__isnull=True) | Q(expires_at__gte=arrow.now().datetime))
+    )
 
 
 def get_news_detail(news_id: int = None) -> News:
