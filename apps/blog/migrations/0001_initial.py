@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('is_active', models.BooleanField(default=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('title', models.CharField(max_length=128)),
+                ('title', models.CharField(db_index=True, max_length=128)),
                 ('slug', models.SlugField(unique=True)),
                 ('image', models.ImageField(blank=True, null=True, upload_to='')),
                 ('short_description', models.CharField(blank=True, max_length=256, null=True)),
