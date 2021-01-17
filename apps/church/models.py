@@ -46,3 +46,11 @@ class ContactParameter(CustomModel):
 
     def __str__(self):
         return self.label
+
+
+class News(CustomModel):
+    subject = models.CharField(max_length=140)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.subject
