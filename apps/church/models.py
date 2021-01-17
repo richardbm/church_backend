@@ -9,6 +9,12 @@ from apps.church.constants import (
     CONTACT_PARAMETER_PHONE_NUMBER,
     CONTACT_PARAMETER_EMAIL,
     CONTACT_PARAMETER_MAP,
+    CONTACT_PARAMETER_FACEBOOK,
+    CONTACT_PARAMETER_INSTAGRAM,
+    CONTACT_PARAMETER_YOUTUBE,
+    MEMBER_MINISTRY_TYPE_DISCIPLE,
+    MEMBER_MINISTRY_TYPE_COLLABORATOR,
+    MEMBER_MINISTRY_TYPE_LEADER,
 )
 from apps.utils.models import CustomModel
 
@@ -34,10 +40,13 @@ class Contact(CustomModel):
 
 class ContactParameter(CustomModel):
     LABEL_CHOICE = (
-        (CONTACT_PARAMETER_ADDRESS, "Address"),
-        (CONTACT_PARAMETER_PHONE_NUMBER, "Phone number"),
-        (CONTACT_PARAMETER_EMAIL, "Email"),
-        (CONTACT_PARAMETER_MAP, "Map"),
+        (CONTACT_PARAMETER_ADDRESS, ugettext_lazy("ADDRESS")),
+        (CONTACT_PARAMETER_PHONE_NUMBER, ugettext_lazy("PHONE_NUMBER")),
+        (CONTACT_PARAMETER_EMAIL, ugettext_lazy("EMAIL")),
+        (CONTACT_PARAMETER_MAP, ugettext_lazy("MAP")),
+        (CONTACT_PARAMETER_FACEBOOK, ugettext_lazy("FACEBOOK")),
+        (CONTACT_PARAMETER_INSTAGRAM, ugettext_lazy("INSTAGRAM")),
+        (CONTACT_PARAMETER_YOUTUBE, ugettext_lazy("YOUTUBE")),
     )
     label = models.CharField(choices=LABEL_CHOICE, max_length=32)
     value = models.CharField(max_length=128)
@@ -85,9 +94,12 @@ class Membership(CustomModel):
 
 class MemberMinistry(CustomModel):
     MEMBER_TYPE_CHOICE = (
-        ("DISCIPLE", ugettext_lazy("CHURCH_MEMBER_TYPE_DISCIPLE")),
-        ("COLLABORATOR", ugettext_lazy("CHURCH_MEMBER_TYPE_COLLABORATOR")),
-        ("LEADER", ugettext_lazy("CHURCH_MEMBER_TYPE_LEADER")),
+        (MEMBER_MINISTRY_TYPE_DISCIPLE, ugettext_lazy("CHURCH_MEMBER_TYPE_DISCIPLE")),
+        (
+            MEMBER_MINISTRY_TYPE_COLLABORATOR,
+            ugettext_lazy("CHURCH_MEMBER_TYPE_COLLABORATOR"),
+        ),
+        (MEMBER_MINISTRY_TYPE_LEADER, ugettext_lazy("CHURCH_MEMBER_TYPE_LEADER")),
     )
     member = models.ForeignKey(
         Membership, related_name="ministries", on_delete=models.CASCADE
