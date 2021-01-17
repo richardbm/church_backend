@@ -7,6 +7,6 @@ app_name = "api"
 
 router = routers.DefaultRouter()
 router.register("about", AboutViewSet, basename="about")
-router.register("contact", ContactViewSet, basename="contact")
+router.register("contacts", ContactViewSet, basename="contact")
 
 urlpatterns = [path("", include(router.urls))]

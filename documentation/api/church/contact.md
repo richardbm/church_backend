@@ -1,7 +1,7 @@
 ## Conact information
 
 ## Contact list
-*url:* `/v1/church/contact/`
+*url:* `/v1/church/contacts/`
 
 *method:* GET
 
@@ -44,7 +44,7 @@
 
 
 ## Contact detail
-*url:* `/v1/church/contact/:id`
+*url:* `/v1/church/contacts/:id`
 
 *method:* GET
 
