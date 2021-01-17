@@ -17,5 +17,6 @@ class UserRegistrationViewSet(ViewSet):
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
         data["username"] = data["email"]
-        create_user(data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        user = create_user(data)
+        data = self.serializer_class(user).data
+        return Response(data, status=status.HTTP_201_CREATED)

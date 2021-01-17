@@ -7,6 +7,7 @@ from apps.accounts.services import get_user
 
 
 class UserRegistrationSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
     email = serializers.CharField(max_length=128, required=True)
     password = serializers.CharField(max_length=32, required=True, write_only=True)
     first_name = serializers.CharField(max_length=30, required=True)
