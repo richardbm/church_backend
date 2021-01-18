@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'rest_framework_social_oauth2',
     'rest_framework',
     'phonenumber_field',
+    'django_wysiwyg',
+    'tinymce',
     'apps.accounts',
     'apps.api',
     'apps.blog',
