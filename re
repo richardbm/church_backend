@@ -25,8 +25,6 @@ django-recurrence==1.10.3
 django-rest-framework-social-oauth2==1.1.0
 django-scheduler==0.9.3
 django-timezone-field==4.0
-django-tinymce==3.2.0
-django-wysiwyg==0.8.0
 djangorestframework==3.11.0
 gunicorn==20.0.4
 icalendar==4.0.6
