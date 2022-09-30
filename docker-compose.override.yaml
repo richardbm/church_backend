@@ -1,0 +1,12 @@
+version: '2.3'
+
+services:
+
+  app:
+    environment:
+      - DJANGO_SETTINGS_MODULE=church_project.settings
+    command: sh -c "wait-for postgres:5432 && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app

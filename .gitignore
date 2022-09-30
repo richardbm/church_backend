@@ -4,3 +4,4 @@ __pycache__/
 .DS_store
 .idea
 .python-version
+*/settings/local.py
